@@ -10,7 +10,7 @@ type MarketPrice = {
 };
 
 type MarketPriceWidgetProps = {
-  language: string;
+  language?: string;
   translations: {
     marketPrices: string;
     loading?: string;

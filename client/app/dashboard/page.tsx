@@ -107,13 +107,13 @@ export default function DashboardPage() {
     const hour = currentTime.getHours()
     
     if (hour >= 5 && hour < 12) {
-      return t("dashboard.greetingMorning", `Good Morning, ${userName}`)
+      return t("dashboard.greetingMorning")
     } else if (hour >= 12 && hour < 17) {
-      return t("dashboard.greetingAfternoon", `Good Afternoon, ${userName}`)
+      return t("dashboard.greetingAfternoon")
     } else if (hour >= 17 && hour < 21) {
-      return t("dashboard.greetingEvening", `Good Evening, ${userName}`)
+      return t("dashboard.greetingEvening")
     } else {
-      return t("dashboard.greetingNight", `Good Night, ${userName}`)
+      return t("dashboard.greetingNight")
     }
   }, [currentTime, userName, t])
 
@@ -438,7 +438,7 @@ export default function DashboardPage() {
                   {greeting}
                 </h1>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  {t("dashboard.welcomeMessage", "Your personalized farming dashboard with real-time insights.")}
+                  {t("dashboard.welcomeMessage")}
                 </p>
               </div>
               
@@ -563,8 +563,7 @@ export default function DashboardPage() {
                                 </div>
                                 <Progress 
                                   value={Math.min(weather.aqi, 300) / 3} 
-                                  className="h-2 bg-white/20"
-                                  indicatorClassName="bg-gradient-to-r from-green-500 via-yellow-500 to-red-500"
+                                  className="h-2 bg-white/20 bg-gradient-to-r from-green-500 via-yellow-500 to-red-500"
                                 />
                                 <div className="flex justify-between text-xs text-white/80">
                                   <span>Good</span>
@@ -665,12 +664,12 @@ export default function DashboardPage() {
             <div className="space-y-8">
               {/* Market Prices */}
               <div className={`transform transition-all duration-700 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-                <MarketPriceWidget 
+                <MarketPriceWidget
                   translations={{
-                    marketPrices: t("dashboard.marketPrices", "Market Prices"),
-                    loading: t("dashboard.marketPricesLoading", "Loading market prices..."),
-                    usingCachedData: t("dashboard.marketPricesCached", "Using cached data"),
-                    viewMorePrices: t("dashboard.marketPricesViewMore", "View More Prices"),
+                    marketPrices: t("dashboard.marketPrices"),
+                    loading: t("dashboard.marketPricesLoading"),
+                    usingCachedData: t("dashboard.marketPricesCached"),
+                    viewMorePrices: t("dashboard.marketPricesViewMore"),
                   }}
                 />
               </div>
@@ -738,7 +737,7 @@ export default function DashboardPage() {
                     </div>
                     <div className="space-y-2">
                       <div className="text-sm text-emerald-800/80">Moisture Level</div>
-                      <Progress value={65} className="h-2 bg-emerald-200/50" indicatorClassName="bg-gradient-to-r from-emerald-500 to-emerald-600" />
+                      <Progress value={65} className="h-2 bg-emerald-200/50 bg-gradient-to-r from-emerald-500 to-emerald-600"  />
                       <div className="flex justify-between text-xs">
                         <span className="text-emerald-600">65% Optimal</span>
                         <span className="text-muted-foreground">Last: 2h ago</span>
@@ -758,7 +757,7 @@ export default function DashboardPage() {
                     </div>
                     <div className="space-y-2">
                       <div className="text-sm text-amber-800/80">Growth Stage</div>
-                      <Progress value={45} className="h-2 bg-amber-200/50" indicatorClassName="bg-gradient-to-r from-amber-500 to-orange-500" />
+                      <Progress value={45} className="h-2 bg-amber-200/50 bg-gradient-to-r from-amber-500 to-orange-500"  />
                       <div className="flex justify-between text-xs">
                         <span className="text-amber-600">45% Vegetative</span>
                         <span className="text-muted-foreground">Next: Flowering</span>

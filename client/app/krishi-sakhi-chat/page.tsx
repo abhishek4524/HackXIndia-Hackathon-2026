@@ -180,7 +180,7 @@ export default function KrishiSakhiChatPage() {
     setIsTypingEffect(true)
     
     try {
-      const API_URL = process.env.NEXT_PUBLIC_OPENAI_API_URL 
+      const API_URL = process.env.NEXT_PUBLIC_OPENAI_API_URL || "https://openrouter.ai/api/v1/chat/completions"
       const API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY
       
       const response = await fetch(API_URL, {
