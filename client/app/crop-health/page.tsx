@@ -31,6 +31,14 @@ import { useUser } from "@clerk/clerk-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Progress } from "@/components/ui/progress";
 
+import { 
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  SignIn
+
+ } from "@clerk/nextjs";
+
 interface CropHistory {
   id: string;
   imageUrl: string;
@@ -290,7 +298,15 @@ export default function CropHealthPage() {
   ];
 
   return (
+    <ClerkProvider>
     <LayoutWrapper>
+                <SignedOut>
+                    <div className="w-full h-screen flex justify-center items-center">  
+                    <SignIn/>
+                    </div>
+                </SignedOut>
+                <SignedIn>
+
       <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-green-50/50 to-white">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
@@ -378,23 +394,23 @@ export default function CropHealthPage() {
                   <AnimatePresence>
                     {showHistory && cropHistory.length > 0 && (
                       <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="space-y-3 pt-4"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="space-y-3 pt-4"
                       >
                         <h4 className="font-semibold text-sm">Recent Analysis</h4>
                         {cropHistory.map((history) => (
-                          <div
+                            <div
                             key={history.id}
                             className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                          >
+                            >
                             <div className="w-10 h-10 rounded overflow-hidden">
                               <img
                                 src={history.imageUrl}
                                 alt="History"
                                 className="w-full h-full object-cover"
-                              />
+                                />
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex justify-between">
@@ -429,11 +445,11 @@ export default function CropHealthPage() {
                   <ul className="space-y-3">
                     {quickTips.map((tip, index) => (
                       <motion.li
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="flex items-start"
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="flex items-start"
                       >
                         <div className="flex-shrink-0 w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center mr-3">
                           <span className="text-xs font-bold text-amber-600">
@@ -453,10 +469,10 @@ export default function CropHealthPage() {
               <AnimatePresence mode="wait">
                 {!selectedImage ? (
                   <motion.div
-                    key="upload"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
+                  key="upload"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
                   >
                     <Card className="border-2 border-dashed border-green-300 shadow-xl hover:shadow-2xl transition-shadow">
                       <CardHeader className="text-center">
@@ -476,29 +492,29 @@ export default function CropHealthPage() {
                           onDragLeave={handleDragLeave}
                           onDrop={handleDrop}
                           className={`border-3 border-dashed rounded-xl p-12 text-center cursor-pointer transition-all duration-300 ${
-                            isDragActive
+                              isDragActive
                               ? "border-green-500 bg-green-50 scale-[1.02]"
                               : "border-green-300 hover:border-green-400 hover:bg-green-50/50"
-                          }`}
-                        >
+                            }`}
+                            >
                           <input
                             ref={fileInputRef}
                             type="file"
                             accept="image/*"
                             onChange={(e) => {
-                              const file = e.target.files?.[0];
-                              if (file) handleFileSelect(file);
+                                const file = e.target.files?.[0];
+                                if (file) handleFileSelect(file);
                             }}
                             className="hidden"
                             id="image-input"
-                          />
+                            />
                           
                           {uploadProgress > 0 ? (
-                            <motion.div
+                              <motion.div
                               initial={{ opacity: 0 }}
                               animate={{ opacity: 1 }}
                               className="space-y-4"
-                            >
+                              >
                               <div className="w-20 h-20 mx-auto relative">
                                 <div className="absolute inset-0 flex items-center justify-center">
                                   <Upload className="h-8 w-8 text-green-600 animate-bounce" />
@@ -511,7 +527,7 @@ export default function CropHealthPage() {
                                     fill="none"
                                     stroke="#e5e7eb"
                                     strokeWidth="8"
-                                  />
+                                    />
                                   <motion.circle
                                     cx="50"
                                     cy="50"
@@ -525,13 +541,13 @@ export default function CropHealthPage() {
                                     initial={{ strokeDashoffset: 283 }}
                                     animate={{ strokeDashoffset: 283 - (283 * uploadProgress) / 100 }}
                                     transition={{ duration: 0.3 }}
-                                  />
+                                    />
                                 </svg>
                               </div>
                               <p>Uploading... {uploadProgress}%</p>
                             </motion.div>
                           ) : (
-                            <>
+                              <>
                               <Upload className="mx-auto h-16 w-16 text-green-500 mb-6" />
                               <h3 className="text-xl font-semibold mb-2">
                                 {isDragActive ? "Drop Image Here" : "Drag & Drop"}
@@ -544,7 +560,7 @@ export default function CropHealthPage() {
                                   size="lg"
                                   className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 shadow-lg hover:shadow-xl"
                                   onClick={() => fileInputRef.current?.click()}
-                                >
+                                  >
                                   <Camera className="mr-2 h-5 w-5" />
                                   Select Image
                                 </Button>
@@ -553,10 +569,10 @@ export default function CropHealthPage() {
                                   variant="outline"
                                   className="border-green-300 hover:bg-green-50"
                                   onClick={() => {
-                                    // Simulate camera access
-                                    fileInputRef.current?.click();
-                                  }}
-                                >
+                                      // Simulate camera access
+                                      fileInputRef.current?.click();
+                                    }}
+                                    >
                                   Take Photo
                                 </Button>
                               </div>
@@ -567,7 +583,7 @@ export default function CropHealthPage() {
                     </Card>
                   </motion.div>
                 ) : (
-                  <motion.div
+                    <motion.div
                     key="analysis"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -635,14 +651,14 @@ export default function CropHealthPage() {
                               disabled={isAnalyzing}
                               size="lg"
                               className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 shadow-lg hover:shadow-xl transition-all"
-                            >
+                              >
                               {isAnalyzing ? (
                                 <>
                                   <Loader2 className="mr-3 h-5 w-5 animate-spin" />
                                   Analyzing with AI...
                                 </>
                               ) : (
-                                <>
+                                  <>
                                   <Brain className="mr-3 h-5 w-5" />
                                   Start Advanced Analysis
                                 </>
@@ -662,19 +678,19 @@ export default function CropHealthPage() {
 
                     {/* Results */}
                     {analysisResult && (
-                      <motion.div
+                        <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                      >
+                        >
                         <Card className="shadow-xl border-green-200">
                           <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50">
                             <CardTitle className="flex items-center">
                               {analysisResult.healthStatus === "Healthy" ? (
-                                <CheckCircle className="h-7 w-7 text-green-500 mr-3 animate-pulse" />
-                              ) : (
-                                <AlertCircle className="h-7 w-7 text-amber-500 mr-3 animate-pulse" />
-                              )}
+                                  <CheckCircle className="h-7 w-7 text-green-500 mr-3 animate-pulse" />
+                                ) : (
+                                    <AlertCircle className="h-7 w-7 text-amber-500 mr-3 animate-pulse" />
+                                )}
                               Analysis Results
                               <span className="ml-auto text-sm font-normal px-3 py-1 bg-green-100 text-green-700 rounded-full">
                                 AI Powered
@@ -700,7 +716,7 @@ export default function CropHealthPage() {
                                 <div className="relative h-6 bg-gray-100 rounded-full overflow-hidden">
                                   <motion.div
                                     className={`h-full rounded-full ${
-                                      analysisResult.healthStatus === "Healthy"
+                                        analysisResult.healthStatus === "Healthy"
                                         ? "bg-gradient-to-r from-green-500 to-emerald-500"
                                         : analysisResult.healthStatus === "Moderate"
                                         ? "bg-gradient-to-r from-amber-400 to-orange-400"
@@ -709,31 +725,31 @@ export default function CropHealthPage() {
                                     initial={{ width: 0 }}
                                     animate={{ width: `${analysisResult.confidence}%` }}
                                     transition={{ duration: 1, ease: "easeOut" }}
-                                  />
+                                    />
                                 </div>
                               </div>
                             </div>
 
                             {/* Detected Issues */}
                             {analysisResult.diseases?.length > 0 && (
-                              <motion.div
+                                <motion.div
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
-                              >
+                                >
                                 <h3 className="font-semibold text-lg mb-4 flex items-center">
                                   <AlertCircle className="h-5 w-5 mr-2 text-red-600" />
                                   Detected Issues
                                 </h3>
                                 <div className="grid gap-3">
                                   {analysisResult.diseases.map(
-                                    (disease: any, index: number) => (
-                                      <motion.div
-                                        key={index}
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: index * 0.1 }}
-                                        className="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-100 hover:bg-red-100 transition-colors"
-                                      >
+                                      (disease: any, index: number) => (
+                                          <motion.div
+                                          key={index}
+                                          initial={{ opacity: 0, y: 10 }}
+                                          animate={{ opacity: 1, y: 0 }}
+                                          transition={{ delay: index * 0.1 }}
+                                          className="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-100 hover:bg-red-100 transition-colors"
+                                          >
                                         <div>
                                           <div className="font-medium text-red-800">
                                             {disease.name}
@@ -747,7 +763,7 @@ export default function CropHealthPage() {
                                         </div>
                                       </motion.div>
                                     )
-                                  )}
+                                )}
                                 </div>
                               </motion.div>
                             )}
@@ -761,7 +777,7 @@ export default function CropHealthPage() {
                               <div className="grid gap-3">
                                 {analysisResult.recommendations.map(
                                   (recommendation: string, index: number) => (
-                                    <motion.div
+                                      <motion.div
                                       key={index}
                                       initial={{ opacity: 0, x: 20 }}
                                       animate={{ opacity: 1, x: 0 }}
@@ -788,7 +804,7 @@ export default function CropHealthPage() {
                               </h3>
                               <div className="grid gap-2">
                                 {analysisResult.aiInsights?.map((insight: string, index: number) => (
-                                  <div key={index} className="flex items-center text-sm text-purple-700">
+                                    <div key={index} className="flex items-center text-sm text-purple-700">
                                     <Sparkles className="h-4 w-4 mr-2 text-purple-500" />
                                     {insight}
                                   </div>
@@ -802,32 +818,32 @@ export default function CropHealthPage() {
                                 variant="outline"
                                 className="border-green-300 hover:bg-green-50"
                                 onClick={() => speak(
-                                  `Health Status: ${analysisResult.healthStatus}. Confidence: ${analysisResult.confidence}%. Recommendations: ${analysisResult.recommendations.join('. ')}`
+                                    `Health Status: ${analysisResult.healthStatus}. Confidence: ${analysisResult.confidence}%. Recommendations: ${analysisResult.recommendations.join('. ')}`
                                 )}
-                              >
+                                >
                                 🔊 Hear Results
                               </Button>
                               <Button
                                 variant="outline"
                                 className="border-blue-300 hover:bg-blue-50"
                                 onClick={() => {
-                                  // Share functionality
-                                  navigator.clipboard.writeText(
-                                    `Crop Health Analysis: ${analysisResult.healthStatus} (${analysisResult.confidence}% confidence)`
-                                  );
-                                  alert("Results copied to clipboard!");
+                                    // Share functionality
+                                    navigator.clipboard.writeText(
+                                        `Crop Health Analysis: ${analysisResult.healthStatus} (${analysisResult.confidence}% confidence)`
+                                    );
+                                    alert("Results copied to clipboard!");
                                 }}
-                              >
+                                >
                                 📋 Share Results
                               </Button>
                               <Button
                                 variant="outline"
                                 className="border-amber-300 hover:bg-amber-50"
                                 onClick={() => {
-                                  // Schedule reminder
-                                  alert("Reminder scheduled for next week!");
+                                    // Schedule reminder
+                                    alert("Reminder scheduled for next week!");
                                 }}
-                              >
+                                >
                                 ⏰ Schedule Check-up
                               </Button>
                             </div>
@@ -839,8 +855,8 @@ export default function CropHealthPage() {
                     {/* Error State */}
                     {error && (
                       <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
                       >
                         <Card className="border-red-200 bg-red-50 shadow-lg">
                           <CardContent className="pt-6">
@@ -857,7 +873,7 @@ export default function CropHealthPage() {
                                 size="sm"
                                 className="border-red-300 text-red-700 hover:bg-red-50"
                                 onClick={() => setError(null)}
-                              >
+                                >
                                 Dismiss
                               </Button>
                             </div>
@@ -872,6 +888,8 @@ export default function CropHealthPage() {
           </div>
         </div>
       </div>
+                </SignedIn>
     </LayoutWrapper>
+    </ClerkProvider>
   );
 }

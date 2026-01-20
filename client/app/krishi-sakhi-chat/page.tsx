@@ -11,6 +11,13 @@ import { toast } from "sonner"
 import { useUser } from "@clerk/clerk-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { motion, AnimatePresence } from "framer-motion"
+import { 
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  SignIn
+
+ } from "@clerk/nextjs";
 
 const quickQuestions = [
   { text: "मौसम की जानकारी", icon: "🌤️" },
@@ -270,7 +277,14 @@ export default function KrishiSakhiChatPage() {
   }
 
   return (
+    <ClerkProvider>
     <LayoutWrapper>
+        <SignedOut>
+            <div className="w-full h-screen flex justify-center items-center">  
+            <SignIn/>
+            </div>
+        </SignedOut>
+    <SignedIn>
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-amber-50 to-emerald-50 py-8 px-4">
         <div className="max-w-5xl mx-auto">
           {/* Animated Header */}
@@ -336,7 +350,7 @@ export default function KrishiSakhiChatPage() {
                 disabled={isProcessing}
                 size="lg"
                 className={`relative rounded-full p-10 h-auto shadow-2xl transition-all duration-300 transform hover:scale-105 ${
-                  isListening 
+                    isListening 
                     ? "bg-gradient-to-r from-red-500 to-pink-500 animate-pulse" 
                     : "bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600"
                 }`}
@@ -348,7 +362,7 @@ export default function KrishiSakhiChatPage() {
                       <span className="text-lg font-bold">Stop Listening</span>
                     </>
                   ) : (
-                    <>
+                      <>
                       <Mic className="w-14 h-14 mb-2" />
                       <span className="text-lg font-bold">{t("dashboard.voiceButton")}</span>
                     </>
@@ -361,10 +375,10 @@ export default function KrishiSakhiChatPage() {
             <AnimatePresence>
               {isListening && (
                 <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="mt-4 text-center p-4 bg-gradient-to-r from-green-100 to-emerald-100 rounded-xl shadow-sm"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="mt-4 text-center p-4 bg-gradient-to-r from-green-100 to-emerald-100 rounded-xl shadow-sm"
                 >
                   <div className="flex items-center justify-center gap-3">
                     <div className="flex gap-1">
@@ -376,13 +390,13 @@ export default function KrishiSakhiChatPage() {
                   </div>
                   <style jsx>{`
                     @keyframes wave {
-                      0%, 100% { transform: scaleY(1); }
-                      50% { transform: scaleY(1.5); }
-                    }
-                    .animate-wave {
-                      animation: wave 1s ease-in-out infinite;
-                    }
-                  `}</style>
+                        0%, 100% { transform: scaleY(1); }
+                        50% { transform: scaleY(1.5); }
+                        }
+                        .animate-wave {
+                            animation: wave 1s ease-in-out infinite;
+                            }
+                            `}</style>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -390,14 +404,14 @@ export default function KrishiSakhiChatPage() {
             {/* Audio Control */}
             {isSpeaking && (
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="mt-4"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="mt-4"
               >
                 <Button
                   onClick={stopSpeaking}
                   className="rounded-full px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 shadow-lg"
-                >
+                  >
                   <X className="w-5 h-5 mr-2" />
                   Stop Audio
                 </Button>
@@ -421,19 +435,19 @@ export default function KrishiSakhiChatPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {quickQuestions.map((question, index) => (
                 <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 >
                   <Badge
                     variant="outline"
                     className={`w-full h-full py-3 px-4 cursor-pointer transition-all duration-300 text-center text-sm ${
-                      activeQuickQuestion === index
+                        activeQuickQuestion === index
                         ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white border-transparent shadow-lg"
                         : "bg-white/80 hover:bg-green-50 text-green-800 border-green-200 shadow-sm"
                     }`}
                     onClick={() => handleQuickQuestion(question.text, index)}
-                  >
+                    >
                     <span className="mr-2">{question.icon}</span>
                     {question.text}
                   </Badge>
@@ -453,10 +467,10 @@ export default function KrishiSakhiChatPage() {
             <div className="flex flex-wrap justify-center gap-2">
               {conversationStarters.map((starter, index) => (
                 <Badge
-                  key={index}
-                  variant="secondary"
-                  className="bg-amber-100 text-amber-800 hover:bg-amber-200 px-4 py-2 cursor-pointer rounded-full border-amber-200"
-                  onClick={() => handleQuickQuestion(starter, -1)}
+                key={index}
+                variant="secondary"
+                className="bg-amber-100 text-amber-800 hover:bg-amber-200 px-4 py-2 cursor-pointer rounded-full border-amber-200"
+                onClick={() => handleQuickQuestion(starter, -1)}
                 >
                   {starter}
                 </Badge>
@@ -498,7 +512,7 @@ export default function KrishiSakhiChatPage() {
                       size="sm"
                       onClick={clearChat}
                       className="text-green-700 border-green-300 hover:bg-green-50"
-                    >
+                      >
                       Clear Chat
                     </Button>
                   </div>
@@ -511,11 +525,11 @@ export default function KrishiSakhiChatPage() {
                   <AnimatePresence>
                     {messages.map((message) => (
                       <motion.div
-                        key={message.id + '-' + message.timestamp.getTime()}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className={`flex mb-6 ${message.sender === "user" ? "justify-end" : "justify-start"}`}
+                      key={message.id + '-' + message.timestamp.getTime()}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className={`flex mb-6 ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                       >
                         <div className="max-w-[80%]">
                           <div className={`flex items-start gap-3 ${message.sender === "user" ? "flex-row-reverse" : ""}`}>
@@ -528,7 +542,7 @@ export default function KrishiSakhiChatPage() {
                             
                             {/* Message Bubble */}
                             <div className={`relative rounded-2xl p-4 shadow-sm ${
-                              message.sender === "user"
+                                message.sender === "user"
                                 ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-tr-none"
                                 : "bg-white border border-green-100 text-gray-800 rounded-tl-none shadow-sm"
                             }`}>
@@ -537,8 +551,8 @@ export default function KrishiSakhiChatPage() {
                               
                               {/* Timestamp */}
                               <div className={`flex items-center justify-between mt-3 text-xs ${
-                                message.sender === "user" ? "text-green-100" : "text-gray-500"
-                              }`}>
+                                  message.sender === "user" ? "text-green-100" : "text-gray-500"
+                                }`}>
                                 <span>
                                   {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                 </span>
@@ -559,7 +573,7 @@ export default function KrishiSakhiChatPage() {
                                       size="icon"
                                       className={`h-6 w-6 ${message.isLiked === false ? 'text-red-600 bg-red-100' : 'hover:text-red-600'}`}
                                       onClick={() => handleFeedback(message.id, false)}
-                                    >
+                                      >
                                       <ThumbsDown className="h-3 w-3" />
                                     </Button>
                                     <Button
@@ -567,7 +581,7 @@ export default function KrishiSakhiChatPage() {
                                       size="icon"
                                       className="h-6 w-6 hover:text-blue-600"
                                       onClick={() => speakText(message.text)}
-                                    >
+                                      >
                                       <Volume2 className="h-3 w-3" />
                                     </Button>
                                   </div>
@@ -582,11 +596,11 @@ export default function KrishiSakhiChatPage() {
 
                   {/* Typing Indicator */}
                   {isTypingEffect && (
-                    <motion.div
+                      <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       className="flex justify-start mb-6"
-                    >
+                      >
                       <div className="flex items-center gap-3">
                         <Avatar className="h-8 w-8 bg-emerald-500">
                           <Bot className="h-4 w-4 text-white" />
@@ -621,24 +635,24 @@ export default function KrishiSakhiChatPage() {
                       placeholder={t("krishiSakhiChat.inputPlaceholder") + " या माइक पर क्लिक करें..."}
                       className="flex-1 border border-green-300 rounded-full py-3 px-6 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent shadow-sm bg-white"
                       disabled={isProcessing}
-                    />
+                      />
                     <div className="flex gap-2">
                       <Button
                         onClick={handleVoiceInput}
                         size="icon"
                         className={`rounded-full h-12 w-12 ${
-                          isListening 
+                            isListening 
                             ? "bg-red-500 hover:bg-red-600 animate-pulse" 
                             : "bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600"
                         }`}
-                      >
+                        >
                         <Mic className="h-5 w-5" />
                       </Button>
                       <Button
                         onClick={() => handleSendMessage()}
                         disabled={isProcessing || inputText.trim() === ""}
                         className="rounded-full h-12 w-12 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 shadow-lg"
-                      >
+                        >
                         <Send className="h-5 w-5" />
                       </Button>
                     </div>
@@ -667,7 +681,7 @@ export default function KrishiSakhiChatPage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
             className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6"
-          >
+            >
             <Card className="bg-gradient-to-br from-green-50 to-white border-green-200">
               <CardContent className="p-5">
                 <div className="flex items-center gap-3 mb-3">
@@ -712,6 +726,8 @@ export default function KrishiSakhiChatPage() {
           </motion.div>
         </div>
       </div>
+              </SignedIn>
     </LayoutWrapper>
+              </ClerkProvider>
   )
 }
