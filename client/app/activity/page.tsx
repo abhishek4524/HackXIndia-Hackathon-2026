@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { useAuth } from "@/contexts/auth-context"
-import { API_BASE_URL } from "@/lib/api"
 import { useToast } from "@/hooks/use-toast"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card"
@@ -17,9 +16,9 @@ import { Sprout, Droplets, Beaker, Bug, Plus, Calendar, Save } from "lucide-reac
 export default function ActivityPage() {
   const { user } = useAuth()
   const { toast } = useToast()
-  const [language, setLanguage] = useState("en")
+  const [language, setLanguage] = useState<keyof typeof content>("en")
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [activities, setActivities] = useState([])
+  const [activities, setActivities] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [formData, setFormData] = useState({
     type: "",
@@ -313,7 +312,7 @@ export default function ActivityPage() {
                       <Save className="mr-2 h-4 w-4" />
                       {t.modal.save}
                     </Button>
-                    <Button variant="outline cursor-pointer" onClick={() => setIsModalOpen(false)}>
+                    <Button variant="outline" className="cursor-pointer" onClick={() => setIsModalOpen(false)}>
                       {t.modal.cancel}
                     </Button>
                   </div>
@@ -386,7 +385,6 @@ export default function ActivityPage() {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center justify-between mb-2">
-                            <h3 className="font-semibold text-lg">{t.types[activity.type].title}</h3>
                             <span className="text-sm text-muted-foreground">
                               {new Date(activity.date).toLocaleString()}
                             </span>
