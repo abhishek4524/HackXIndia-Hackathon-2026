@@ -1,0 +1,468 @@
+{
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "knowledge": "Knowledge Hub",
+    "about": "About",
+    "login": "Login",
+    "register": "Register",
+    "profile": "Profile",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "activity": "Activity",
+    "advisory": "Advisory",
+    "chat": "Chat",
+    "cropHealth": "Crop Health"
+  },
+  "home": {
+    "hero": {
+      "title": "Krishi Sakhi – Your Digital Farming Friend",
+      "subtitle": "Personalized, timely advice for India's farmers in different languages.",
+      "talkButton": "Talk to Krishi Sakhi",
+      "registerButton": "Register Now"
+    },
+    "features": {
+      "title": "Features That Help You Grow",
+      "profiling": {
+        "title": "Farmer Profiling",
+        "description": "Personalized recommendations based on your farm details"
+      },
+      "tracking": {
+        "title": "Activity Tracking",
+        "description": "Log and monitor your farming activities easily"
+      },
+      "advisory": {
+        "title": "Personalized Advisory",
+        "description": "AI-powered advice tailored to your crops and conditions"
+      },
+      "alerts": {
+        "title": "Reminders & Alerts",
+        "description": "Never miss important farming tasks and deadlines"
+      }
+    },
+    "impact": {
+      "title": "Empowering India's Farmers",
+      "description": "Empowering India's farmers with AI-driven insights, voice support, and personalized guidance for better harvests and sustainable farming."
+    }
+  },
+"dashboard": {
+    "greeting": "Good Morning, Ravi",
+    "greetingMorning": "Good Morning",
+    "greetingAfternoon": "Good Afternoon",
+    "greetingEvening": "Good Evening",
+    "greetingNight": "Good Night",
+    "welcomeMessage": "Here's your farming overview for today",
+    "greetingIcon": "🌞",
+    "voiceButton": " Talk to Krishi Sakhi",
+    "stopButton": " Stop Talking",
+    "quickActions": "Quick Actions",
+    "todaysWeather": "Today's Weather",
+    "recentActivity": "Recent Activity",
+    "marketPrices": "Market Prices",
+    "marketPricesLoading": "Loading market prices...",
+    "marketPricesCached": "Showing cached market prices.",
+    "marketPricesViewMore": "View More Prices",
+    "becomeSeller": "Become a Seller",
+    "actions": {
+      "logActivity": "Log Activity",
+      "checkWeather": "Check Weather",
+      "advisory": "Get Advisory",
+      "schemes": "Govt Schemes"
+    },
+    "weather": {
+      "temperature": "28°C",
+      "condition": "Partly Cloudy",
+      "humidity": "75%",
+      "rainfall": "Light Rain Expected"
+    }
+  },
+  "profile": {
+    "title": "Farmer Profile Setup",
+    "subtitle": "Tell us about your farm to get personalized recommendations",
+    "nameLabel": "Farmer Name",
+    "locationLabel": "Farm Location",
+    "landSizeLabel": "Land Size (Acres)",
+    "cropLabel": "Primary Crop",
+    "soilTypeLabel": "Soil Type",
+    "irrigationLabel": "Irrigation Method",
+    "gpsButton": "📍 Use GPS Location",
+    "saveButton": "Save Profile",
+    "gpsSuccess": "Location captured successfully!",
+    "gpsError": "Unable to get location. Please enter manually."
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome Back, Farmer!",
+      "subtitle": "Sign in to access your personalized farming guidance",
+      "emailTab": "Email",
+      "phoneTab": "Phone",
+      "emailLabel": "Email Address",
+      "phoneLabel": "Phone Number",
+      "passwordLabel": "Password",
+      "emailPlaceholder": "Enter your email",
+      "phonePlaceholder": "Enter your phone number",
+      "passwordPlaceholder": "Enter your password",
+      "signInButton": "Sign In",
+      "forgotPassword": "Forgot Password?",
+      "noAccount": "Don't have an account?",
+      "signUpLink": "Sign up here"
+    },
+    "register": {
+      "title": "Join Krishi Sakhi Family",
+      "subtitle": "Create your account to start your digital farming journey",
+      "nameLabel": "Full Name",
+      "emailLabel": "Email Address",
+      "phoneLabel": "Phone Number",
+      "passwordLabel": "Password",
+      "confirmPasswordLabel": "Confirm Password",
+      "namePlaceholder": "Enter your full name",
+      "emailPlaceholder": "Enter your email",
+      "phonePlaceholder": "Enter your phone number",
+      "passwordPlaceholder": "Create a password",
+      "confirmPasswordPlaceholder": "Confirm your password",
+      "signUpButton": "Create Account",
+      "haveAccount": "Already have an account?",
+      "signInLink": "Sign in here",
+      "terms": "By creating an account, you agree to our Terms of Service and Privacy Policy"
+    }
+  },
+  "activity": {
+    "title": "Activity Logging",
+    "subtitle": "Track your farming activities for better insights",
+    "addActivity": "Add New Activity",
+    "activityTypes": "Activity Types",
+    "recentActivities": "Recent Activities",
+    "types": {
+      "sowing": {
+        "title": "Sowing",
+        "description": "Record seed planting activities"
+      },
+      "irrigation": {
+        "title": "Irrigation",
+        "description": "Log watering and irrigation"
+      },
+      "fertilizer": {
+        "title": "Fertilizer",
+        "description": "Track fertilizer applications"
+      },
+      "pest": {
+        "title": "Pest Management",
+        "description": "Record pest control measures"
+      }
+    },
+    "modal": {
+      "title": "Add New Activity",
+      "activityType": "Activity Type",
+      "date": "Date",
+      "location": "Field/Location",
+      "description": "Description",
+      "quantity": "Quantity/Amount",
+      "notes": "Additional Notes",
+      "save": "Save Activity",
+      "cancel": "Cancel",
+      "placeholders": {
+        "location": "e.g., Field A, North section",
+        "description": "Describe what you did",
+        "quantity": "e.g., 2 kg, 100 liters",
+        "notes": "Any additional information"
+      }
+    }
+  },
+  "knowledge": {
+    "title": "Knowledge Hub",
+    "subtitle": "Your comprehensive farming knowledge resource",
+    "searchPlaceholder": "Ask in Hindi or English...",
+    "searchButton": "Search",
+    "sections": {
+      "calendars": "Crop Calendars",
+      "practices": "Best Practices",
+      "pest": "Pest Management",
+      "weather": "Weather Guidance"
+    },
+    "sowing": "Sowing",
+    "harvest": "Harvest",
+    "symptoms": "Symptoms",
+    "treatment": "Treatment",
+    "cropCalendars": {
+      "rice": {
+        "crop": "Rice",
+        "season": "Kharif Season",
+        "sowing": "June - July",
+        "harvest": "November - December",
+        "description": "Optimal timing for rice cultivation in Kerala's monsoon season"
+      },
+      "coconut": {
+        "crop": "Coconut",
+        "season": "Year Round",
+        "sowing": "May - June",
+        "harvest": "Continuous",
+        "description": "Coconut cultivation and maintenance throughout the year"
+      },
+      "rubber": {
+        "crop": "Rubber",
+        "season": "Year Round",
+        "sowing": "May - June",
+        "harvest": "Year Round",
+        "description": "Rubber plantation management and tapping schedules"
+      }
+    },
+    "bestPractices": {
+      "organicFarming": {
+        "title": "Organic Farming Methods",
+        "description": "Sustainable farming practices using natural fertilizers and pest control",
+        "category": "Sustainability"
+      },
+      "waterConservation": {
+        "title": "Water Conservation Techniques",
+        "description": "Efficient irrigation methods to conserve water and improve crop yield",
+        "category": "Water Management"
+      },
+      "soilHealth": {
+        "title": "Soil Health Management",
+        "description": "Maintaining soil fertility through proper nutrient management",
+        "category": "Soil Care"
+      }
+    },
+    "pestManagement": {
+      "brownPlantHopper": {
+        "pest": "Brown Plant Hopper",
+        "crops": "Rice",
+        "symptoms": "Yellowing and drying of rice plants",
+        "treatment": "Use neem oil spray and maintain proper field hygiene"
+      },
+      "coconutMite": {
+        "pest": "Coconut Mite",
+        "crops": "Coconut",
+        "symptoms": "Yellow spots on coconut leaves",
+        "treatment": "Apply sulfur dust and ensure proper tree spacing"
+      },
+      "leafBlight": {
+        "pest": "Leaf Blight",
+        "crops": "Vegetables",
+        "symptoms": "Brown spots on leaves with yellow halos",
+        "treatment": "Use copper-based fungicides and remove affected leaves"
+      }
+    }
+  },
+"about": {
+  "title": "About Krishi Sakhi",
+  "subtitle": "Your Digital Companion Empowering Farmers Across India",
+  "vision": {
+    "title": "Our Vision",
+    "description": "Krishi Sakhi envisions a future where every Indian farmer, from the Himalayas to Kanyakumari, has access to intelligent, localized, and real-time agricultural support. We strive to make technology a trusted partner in every farmer’s journey toward prosperity and sustainability."
+  },
+  "mission": {
+    "title": "Our Mission",
+    "description": "To empower India’s farmers with AI-driven insights, multilingual voice support, and personalized guidance that help them make informed decisions, boost productivity, and adopt sustainable, climate-resilient farming practices."
+  },
+  "features": {
+    "title": "What Makes Us Special",
+    "voice": {
+      "title": "Voice-First Interface",
+      "description": "Speak to Krishi Sakhi in your preferred Indian language and receive instant, personalized farming assistance."
+    },
+    "personalized": {
+      "title": "Personalized Guidance",
+      "description": "Get recommendations tailored to your location, crop type, soil conditions, and seasonal challenges."
+    },
+    "realtime": {
+      "title": "Real-Time Alerts",
+      "description": "Receive timely notifications about weather updates, pest alerts, and government scheme opportunities relevant to your region."
+    },
+    "local": {
+      "title": "India-Focused",
+      "description": "Built for India’s diverse agricultural landscape, from the fertile plains of Punjab to the coastal farms of Tamil Nadu."
+    }
+  },
+  "team": {
+    "title": "SIH Project Team",
+    "description": "Krishi Sakhi was developed as part of the Smart India Hackathon (SIH) by a passionate team of students dedicated to leveraging technology for agricultural innovation and rural empowerment.",
+    "credits": "Built with dedication by the SIH 2025 team for the betterment of India’s farming community."
+  },
+  "impact": {
+    "title": "Our Impact Goals",
+    "farmers": "10,000+ Farmers Supported Nationwide",
+    "advisory": "24/7 AI-Powered Advisory",
+    "languages": "Available in Multiple Indian Languages",
+    "coverage": "Across All Indian States"
+  }
+},
+
+  "becomeSeller": {
+    "title": "Become a Seller",
+    "description": "Join our platform to sell your farm produce directly to customers and get better prices for your products.",
+    "whyJoin": "Why Join as a Seller?",
+    "benefits": {
+      "directMarket": {
+        "title": "Direct Market Access",
+        "description": "Sell directly to consumers without middlemen"
+      },
+      "betterPrices": {
+        "title": "Better Prices",
+        "description": "Get fair prices for your quality produce"
+      },
+      "securePayments": {
+        "title": "Secure Payments",
+        "description": "Receive timely and secure payments for your sales"
+      },
+      "financialServices": {
+        "title": "Financial Services",
+        "description": "Access to credit and insurance services"
+      }
+    },
+    "steps": {
+      "personalInfo": {
+        "title": "Personal Information"
+      },
+      "farmDetails": {
+        "title": "Farm Details"
+      },
+      "bankInfo": {
+        "title": "Bank Information"
+      },
+      "verification": {
+        "title": "Verification"
+      },
+      "step1": {
+        "description": "Tell us about yourself"
+      },
+      "step2": {
+        "description": "Share details about your farm"
+      },
+      "step3": {
+        "description": "Add your bank account details"
+      },
+      "step4": {
+        "description": "Review and submit your application"
+      }
+    },
+    "form": {
+      "fullName": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "Enter your phone number"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "Enter your email address"
+      },
+      "farmLocation": {
+        "label": "Farm Location",
+        "placeholder": "Enter your farm location"
+      },
+      "farmSize": {
+        "label": "Farm Size (acres)",
+        "placeholder": "Enter your farm size"
+      },
+      "mainProducts": {
+        "label": "Main Products",
+        "placeholder": "Select your main products"
+      },
+      "experience": {
+        "label": "Farming Experience",
+        "placeholder": "Select your experience",
+        "options": {
+          "0-2": "0-2 years",
+          "3-5": "3-5 years",
+          "5-10": "5-10 years",
+          "10+": "10+ years"
+        }
+      },
+      "description": {
+        "label": "Farm Description",
+        "placeholder": "Tell us about your farming practices and products"
+      },
+      "bankAccount": {
+        "label": "Bank Account Number",
+        "placeholder": "Enter your bank account number"
+      },
+      "ifscCode": {
+        "label": "IFSC Code",
+        "placeholder": "Enter your bank's IFSC code"
+      },
+      "certification": {
+        "label": "Certifications",
+        "placeholder": "Select any certifications you have",
+        "options": {
+          "none": "No certification",
+          "organic": "Organic Certification",
+          "goodAgricultural": "Good Agricultural Practices",
+          "other": "Other Certification"
+        }
+      },
+      "submit": "Submit Application"
+    },
+    "verification": {
+      "termsTitle": "Terms and Conditions",
+      "termsDescription": "By submitting this application, you agree to our terms and conditions:",
+      "term1": "I will provide quality products as described",
+      "term2": "I will maintain fair pricing and honest dealings",
+      "term3": "I agree to the platform's commission structure",
+      "contactTitle": "Need Help?",
+      "contactDescription": "Our team is available to help you with the registration process"
+    }
+  },
+  "common": {
+    "backToDashboard": "Back to Dashboard",
+    "previous": "Previous",
+    "next": "Next",
+    "callUs": "Call Us",
+    "emailUs": "Email Us",
+    "products": {
+      "vegetables": "Vegetables",
+      "fruits": "Fruits",
+      "grains": "Grains",
+      "spices": "Spices",
+      "dairy": "Dairy Products"
+    }
+  },
+  "krishiSakhiChat": {
+    "chatTitle": "Krishi Sakhi Chat",
+    "chatSubtitle": "Your AI-powered farming assistant. Ask me anything about your crops, soil, weather, and more in Malayalam or English.",
+    "inputPlaceholder": "Type your question here...",
+    "sendButton": "Send",
+    "startVoiceButton": "🎤 Start Voice Input",
+    "stopVoiceButton": "🛑 Stop Voice Input",
+    "listening": "Listening...",
+    "processing": "Processing your question...",
+    "error": "Sorry, something went wrong. Please try again.",
+    "tips": "Ask about weather, crop care, government schemes, or any farming problem. Try using your voice for quick answers!",
+    "quickQuestions": [
+      "Weather information",
+      "Seed treatment methods",
+      "New technology in agriculture",
+      "Crop protection",
+      "How to do soil testing?",
+      "How to get agricultural loan?"
+    ]
+  },
+
+"cropHealth": {
+"title": "Crop Health Analysis",
+"description": "Upload images of your crops to detect diseases and get AI-powered health analysis",
+"uploadTitle": "Upload Crop Image",
+"uploadDescription": "Get instant analysis of your crop health by uploading clear images of leaves, stems, or fruits",
+"dropHere": "Drop the image here...",
+"dragDrop": "Drag & drop an image here, or click to select",
+"supportedFormats": "Supports JPG, JPEG, PNG formats",
+"selectImage": "Select Image",
+"previewTitle": "Image Preview",
+"previewDescription": "Review your uploaded image and start analysis",
+"analyzing": "Analyzing...",
+"analyzeButton": "Analyze Crop Health",
+"resultsTitle": "Analysis Results",
+"healthStatus": "Health Status",
+"detectedIssues": "Detected Issues",
+"recommendations": "Recommendations",
+"tipsTitle": "Tips for Better Analysis",
+"tip1": "Take photos in good natural lighting",
+"tip2": "Capture clear, close-up shots of affected areas",
+"tip3": "Include both healthy and unhealthy parts for comparison",
+"tip4": "Take multiple photos from different angles"
+}
+
+
+}
