@@ -43,6 +43,7 @@ export default function HomePage() {
   });
 
   return (
+    
     <LayoutWrapper>
       {/* Hero Section */}
       <section className="bgImage relative py-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center overflow-hidden">

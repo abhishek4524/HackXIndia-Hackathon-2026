@@ -8,6 +8,16 @@ import { LanguageProvider } from "@/contexts/language-context";
 import { AuthProvider } from "@/contexts/auth-context"; // 👈 import your provider
 import "./globals.css";
 
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
+
+
 export const metadata: Metadata = {
   title: "Krishi Sakhi - AI-Powered Farming Assistant",
   description:
@@ -21,13 +31,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+     <ClerkProvider>
     <html lang="en">
       <head>
         <link rel="icon" type="image/png" href="/favicon.png" />
       </head>
       <body
         className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}
-      >
+        >
         <AuthProvider>
           <LanguageProvider>
             <Suspense fallback={null}>{children}</Suspense>
@@ -36,5 +47,6 @@ export default function RootLayout({
         <Analytics />
       </body>
     </html>
+        </ClerkProvider>
   );
 }

@@ -29,8 +29,8 @@ const MarketPriceWidget: React.FC<MarketPriceWidgetProps> = ({ language, transla
       try {
         setLoading(true);
         // API details
-        const API_KEY = "579b464db66ec23bdd00000175875f0f4f2640b66df230908d7a94ed";
-        const RESOURCE_ID = "9ef84268-d588-465a-a308-a864a43d0070";
+        const API_KEY = process.env.MARKET_PRICE_API_KEY;
+        const RESOURCE_ID = process.env.MARKET_PRICE_RESOURCE_ID;
 
         // Build URL
         const url = `https://api.data.gov.in/resource/${RESOURCE_ID}?api-key=${API_KEY}&format=json&limit=20&filters[state]=Kerala`;
