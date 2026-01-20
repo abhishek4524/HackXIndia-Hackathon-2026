@@ -8,7 +8,7 @@ import { LayoutWrapper } from "@/components/layout-wrapper"
 import { AlertTriangle, CheckCircle, Clock, CloudRain, Bug, Leaf, Calendar, Bell } from "lucide-react"
 
 export default function AdvisoryPage() {
-  const [language, setLanguage] = useState("en")
+const [language, setLanguage] = useState<keyof typeof content>("en")
 
   const content = {
     en: {
@@ -247,9 +247,7 @@ export default function AdvisoryPage() {
                           <div>
                             <CardTitle className="text-lg">{advisory.title}</CardTitle>
                             <div className="flex items-center space-x-2 mt-1">
-                              <Badge variant={getPriorityColor(advisory.priority)}>
-                                {t.priorities[advisory.priority]}
-                              </Badge>
+
                               <span className="text-sm text-muted-foreground">{advisory.time}</span>
                             </div>
                           </div>
@@ -307,9 +305,6 @@ export default function AdvisoryPage() {
                             <p className="text-xs text-muted-foreground mt-1">{task.description}</p>
                             <div className="flex items-center justify-between mt-2">
                               <span className="text-xs font-medium">{task.dueDate}</span>
-                              <Badge variant={getPriorityColor(task.priority)} className="text-xs">
-                                {t.priorities[task.priority]}
-                              </Badge>
                             </div>
                           </div>
                         </div>
