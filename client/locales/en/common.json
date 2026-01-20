@@ -247,16 +247,24 @@
 "about": {
   "title": "About Krishi Sakhi",
   "subtitle": "Your Digital Companion Empowering Farmers Across India",
+  "trusted": "Trusted by farmers and agricultural experts across regions",
+  "realtime": "Real-time data, alerts and localized recommendations",
+  "accessibility": "Accessible across languages and devices",
+  "ourCore": "Our Core",
+  "coreDescription": "We combine AI, local knowledge, and voice-first UX to provide actionable farming guidance tailored to local conditions and languages.",
   "vision": {
     "title": "Our Vision",
-    "description": "Krishi Sakhi envisions a future where every Indian farmer, from the Himalayas to Kanyakumari, has access to intelligent, localized, and real-time agricultural support. We strive to make technology a trusted partner in every farmer’s journey toward prosperity and sustainability."
+    "description": "Krishi Sakhi envisions a future where every Indian farmer, from the Himalayas to Kanyakumari, has access to intelligent, localized, and real-time agricultural support. We strive to make technology a trusted partner in every farmer’s journey toward prosperity and sustainability.",
+    "highlight": "Intelligent, localized support for every farmer"
   },
   "mission": {
     "title": "Our Mission",
-    "description": "To empower India’s farmers with AI-driven insights, multilingual voice support, and personalized guidance that help them make informed decisions, boost productivity, and adopt sustainable, climate-resilient farming practices."
+    "description": "To empower India’s farmers with AI-driven insights, multilingual voice support, and personalized guidance that help them make informed decisions, boost productivity, and adopt sustainable, climate-resilient farming practices.",
+    "highlight": "Empower farmers with multilingual, AI-driven guidance"
   },
   "features": {
     "title": "What Makes Us Special",
+    "subtitle": "Tools and services designed for smallholder farmers",
     "voice": {
       "title": "Voice-First Interface",
       "description": "Speak to Krishi Sakhi in your preferred Indian language and receive instant, personalized farming assistance."
@@ -272,6 +280,14 @@
     "local": {
       "title": "India-Focused",
       "description": "Built for India’s diverse agricultural landscape, from the fertile plains of Punjab to the coastal farms of Tamil Nadu."
+    },
+    "secure": {
+      "title": "Secure & Private",
+      "description": "We protect farmer data and provide secure access to advisory services."
+    },
+    "analytics": {
+      "title": "Actionable Analytics",
+      "description": "Crop and market analytics that surface insights to help farmers make better decisions."
     }
   },
   "team": {
@@ -281,6 +297,7 @@
   },
   "impact": {
     "title": "Our Impact Goals",
+    "subtitle": "Delivering measurable outcomes for farmers",
     "farmers": "10,000+ Farmers Supported Nationwide",
     "advisory": "24/7 AI-Powered Advisory",
     "languages": "Available in Multiple Indian Languages",
