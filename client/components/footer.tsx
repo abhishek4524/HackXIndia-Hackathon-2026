@@ -55,7 +55,7 @@ export function Footer({ language }: FooterProps) {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-primary-foreground/20 text-center">
-          <p className="text-primary-foreground/80">© 2025 Krishi Sakhi. {t.footer.copyright}</p>
+          <p className="text-primary-foreground/80">© 2026 Krishi Sakhi. {t.footer.copyright}</p>
         </div>
       </div>
     </footer>

@@ -26,6 +26,25 @@ import { useLanguage } from "@/contexts/language-context";
 import Products from "@/components/ui/products";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { 
+  ClerkProvider,
+  SignedIn,
+  SignedOut
+
+ } from "@clerk/nextjs";
+ import { RedirectToUserProfile } from "@clerk/nextjs";
+import { redirect, useRouter } from "next/navigation";
+
+
+function RedirectToDashboard() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/dashboard");
+  }, [router]);
+
+  return null;
+}
 
 
 export default function HomePage() {
@@ -43,7 +62,12 @@ export default function HomePage() {
   });
 
   return (
-    
+    <ClerkProvider>
+      <SignedIn>
+        <RedirectToDashboard />
+      </SignedIn>
+      <SignedOut>
+
     <LayoutWrapper>
       {/* Hero Section */}
       <section className="bgImage relative py-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center overflow-hidden">
@@ -55,8 +79,8 @@ export default function HomePage() {
 
           <h1
             className="border p-4 md:p-6 text-4xl md:text-6xl font-bold text-white mb-6 
-             bg-black/10 backdrop-blur-md rounded-2xl shadow-lg text-shadow-lg"
-          >
+            bg-black/10 backdrop-blur-md rounded-2xl shadow-lg text-shadow-lg"
+            >
             {t("home.hero.title")}
           </h1>
 
@@ -69,7 +93,7 @@ export default function HomePage() {
               <Button
                 size="lg"
                 className="text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all w-full bg-green-600 hover:bg-green-700"
-              >
+                >
                 <Mic className="mr-3 h-6 w-6" />
                 {t("dashboard.voiceButton")}
               </Button>
@@ -79,7 +103,7 @@ export default function HomePage() {
                 variant="outline"
                 size="lg"
                 className="text-lg px-8 py-6 rounded-xl border-green-600 text-green-600 hover:bg-green-50 hover:text-green-800"
-              >
+                >
                 <UserPlus className="mr-2 h-5 w-5" />
                 {t("home.hero.registerButton")}
               </Button>
@@ -226,13 +250,13 @@ export default function HomePage() {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-              >
+                >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
                   d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
+                  />
               </svg>
               <h3 className="font-semibold mb-2">Higher Income</h3>
               <p className="text-sm text-muted-foreground">
@@ -243,5 +267,7 @@ export default function HomePage() {
         </div>
       </section>
     </LayoutWrapper>
+                  </SignedOut>
+    </ClerkProvider>
   );
 }
