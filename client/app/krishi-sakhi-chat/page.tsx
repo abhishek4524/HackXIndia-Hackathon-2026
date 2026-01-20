@@ -8,9 +8,9 @@ import { useLanguage } from "@/contexts/language-context"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { toast } from "sonner"
-import { useUser } from "@clerk/clerk-react"
+import { useUser } from "@clerk/nextjs"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { motion, AnimatePresence } from "framer-motion"
+// framer-motion removed to simplify client runtime; using Tailwind/CSS instead
 import { 
   ClerkProvider,
   SignedIn,
@@ -288,12 +288,7 @@ export default function KrishiSakhiChatPage() {
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-amber-50 to-emerald-50 py-8 px-4">
         <div className="max-w-5xl mx-auto">
           {/* Animated Header */}
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-10"
-          >
+          <div className="text-center mb-10">
             <div className="inline-flex items-center justify-center gap-3 mb-4">
               <div className="p-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full shadow-lg">
                 <MessageSquare className="w-8 h-8 text-white" />
@@ -305,16 +300,11 @@ export default function KrishiSakhiChatPage() {
             <p className="text-green-600 text-lg max-w-2xl mx-auto">
               {t("home.hero.subtitle")} - आपकी डिजिटल कृषि सहयोगी 🤝
             </p>
-          </motion.div>
+          </div>
 
           {/* User Info Card */}
           {user && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-              className="mb-8 max-w-md mx-auto"
-            >
+            <div className="mb-8 max-w-md mx-auto">
               <Card className="bg-gradient-to-r from-green-100 to-amber-100 border-green-200 shadow-md">
                 <CardContent className="p-4 flex items-center gap-4">
                   <Avatar className="h-12 w-12 border-2 border-green-500">
@@ -331,16 +321,11 @@ export default function KrishiSakhiChatPage() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           )}
 
           {/* Main Voice Button with Animation */}
-          <motion.div 
-            className="flex flex-col items-center justify-center mb-8"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 }}
-          >
+          <div className="flex flex-col items-center justify-center mb-8">
             <div className="relative">
               {isListening && (
                 <div className="absolute inset-0 animate-ping bg-green-400 rounded-full opacity-75"></div>
@@ -372,14 +357,8 @@ export default function KrishiSakhiChatPage() {
             </div>
             
             {/* Voice Status */}
-            <AnimatePresence>
               {isListening && (
-                <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="mt-4 text-center p-4 bg-gradient-to-r from-green-100 to-emerald-100 rounded-xl shadow-sm"
-                >
+                <div className="mt-4 text-center p-4 bg-gradient-to-r from-green-100 to-emerald-100 rounded-xl shadow-sm">
                   <div className="flex items-center justify-center gap-3">
                     <div className="flex gap-1">
                       <div className="w-2 h-6 bg-green-500 rounded-full animate-wave"></div>
@@ -397,17 +376,12 @@ export default function KrishiSakhiChatPage() {
                             animation: wave 1s ease-in-out infinite;
                             }
                             `}</style>
-                </motion.div>
+                </div>
               )}
-            </AnimatePresence>
 
             {/* Audio Control */}
             {isSpeaking && (
-              <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="mt-4"
-              >
+              <div className="mt-4">
                 <Button
                   onClick={stopSpeaking}
                   className="rounded-full px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 shadow-lg"
@@ -415,17 +389,12 @@ export default function KrishiSakhiChatPage() {
                   <X className="w-5 h-5 mr-2" />
                   Stop Audio
                 </Button>
-              </motion.div>
+              </div>
             )}
-          </motion.div>
+          </div>
 
           {/* Quick Questions Grid */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mb-8"
-          >
+          <div className="mb-8">
             <div className="flex items-center justify-center gap-2 mb-4">
               <Zap className="w-5 h-5 text-amber-500" />
               <h3 className="text-xl font-bold text-green-800">
@@ -434,11 +403,7 @@ export default function KrishiSakhiChatPage() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {quickQuestions.map((question, index) => (
-                <motion.div
-                key={index}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                >
+                <div key={index} className="transform transition-transform duration-150 hover:scale-105 active:scale-95">
                   <Badge
                     variant="outline"
                     className={`w-full h-full py-3 px-4 cursor-pointer transition-all duration-300 text-center text-sm ${
@@ -451,18 +416,13 @@ export default function KrishiSakhiChatPage() {
                     <span className="mr-2">{question.icon}</span>
                     {question.text}
                   </Badge>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Conversation Starters */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="mb-8"
-          >
+          <div className="mb-8">
             <h4 className="text-lg font-semibold text-green-700 mb-3 text-center">Start a conversation 💬</h4>
             <div className="flex flex-wrap justify-center gap-2">
               {conversationStarters.map((starter, index) => (
@@ -476,14 +436,10 @@ export default function KrishiSakhiChatPage() {
                 </Badge>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Main Chat Container */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-          >
+          <div>
             <Card className="w-full shadow-2xl border-green-300 overflow-hidden">
               <CardHeader className="bg-gradient-to-r from-green-100 to-emerald-100 py-4">
                 <div className="flex items-center justify-between">
@@ -522,13 +478,9 @@ export default function KrishiSakhiChatPage() {
               <CardContent className="p-0">
                 {/* Chat Messages */}
                 <div className="h-[400px] overflow-y-auto p-6 bg-gradient-to-b from-white to-green-50/50">
-                  <AnimatePresence>
                     {messages.map((message) => (
-                      <motion.div
+                      <div
                       key={message.id + '-' + message.timestamp.getTime()}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3 }}
                       className={`flex mb-6 ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                       >
                         <div className="max-w-[80%]">
@@ -590,17 +542,12 @@ export default function KrishiSakhiChatPage() {
                             </div>
                           </div>
                         </div>
-                      </motion.div>
+                      </div>
                     ))}
-                  </AnimatePresence>
 
                   {/* Typing Indicator */}
-                  {isTypingEffect && (
-                      <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="flex justify-start mb-6"
-                      >
+                    {isTypingEffect && (
+                      <div className="flex justify-start mb-6">
                       <div className="flex items-center gap-3">
                         <Avatar className="h-8 w-8 bg-emerald-500">
                           <Bot className="h-4 w-4 text-white" />
@@ -618,7 +565,7 @@ export default function KrishiSakhiChatPage() {
                           </div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   )}
 
                   <div ref={messagesEndRef} />
@@ -673,15 +620,10 @@ export default function KrishiSakhiChatPage() {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </div>
 
           {/* Tips & Features */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6"
-            >
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card className="bg-gradient-to-br from-green-50 to-white border-green-200">
               <CardContent className="p-5">
                 <div className="flex items-center gap-3 mb-3">
@@ -723,7 +665,7 @@ export default function KrishiSakhiChatPage() {
                 </p>
               </CardContent>
             </Card>
-          </motion.div>
+          </div>
         </div>
       </div>
               </SignedIn>
