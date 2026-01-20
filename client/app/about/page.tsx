@@ -361,54 +361,6 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </section>
-
-      {/* Call to Action */}
-      <motion.section
-        className="py-20 px-4 sm:px-6 lg:px-8"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeUp}
-      >
-        <div className="max-w-4xl mx-auto text-center">
-          <Card className="border-0 shadow-2xl bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10">
-            <CardContent className="p-12">
-              <motion.div
-                className="mb-6"
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <Leaf className="h-12 w-12 text-primary mx-auto" />
-              </motion.div>
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                {t("about.cta.title")}
-              </h3>
-              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                {t("about.cta.description")}
-              </p>
-              <motion.div
-                className="flex flex-col sm:flex-row gap-4 justify-center"
-                variants={staggerContainer}
-              >
-                <motion.button
-                  className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {t("about.cta.button1")}
-                </motion.button>
-                <motion.button
-                  className="px-8 py-3 border border-primary text-primary rounded-lg font-semibold hover:bg-primary/10 transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {t("about.cta.button2")}
-                </motion.button>
-              </motion.div>
-            </CardContent>
-          </Card>
-        </div>
-      </motion.section>
     </LayoutWrapper>
   )
 }
