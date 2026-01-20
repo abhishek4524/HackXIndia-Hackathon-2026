@@ -13,9 +13,7 @@ import {
   Lightbulb, 
   Shield, 
   BookOpen, 
-  Sprout, 
   Bug, 
-  Filter, 
   ChevronRight,
   Star,
   TrendingUp,
@@ -27,14 +25,56 @@ import { useLanguage } from "@/contexts/language-context"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
+interface CropCalendar {
+  crop: string;
+  season: string;
+  sowing: string;
+  harvest: string;
+  description: string;
+  category: string;
+  difficulty: string;
+  waterRequirement: string;
+  temperature: string;
+  popularity: number;
+  icon: string;
+}
+
+interface BestPractice {
+  title: string;
+  description: string;
+  category: string;
+  difficulty: string;
+  timeRequired: string;
+  benefits: string[];
+  rating: number;
+}
+
+interface Pest {
+  pest: string;
+  crops: string;
+  symptoms: string;
+  treatment: string;
+  severity: string;
+  season: string;
+  organicSolutions: string[];
+  urgency: string;
+}
+
+interface WeatherTip {
+  title: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+  color: string;
+}
+
 export default function KnowledgePage() {
   const { t } = useLanguage()
   const [searchQuery, setSearchQuery] = useState("")
   const [activeTab, setActiveTab] = useState("all")
   const [filteredData, setFilteredData] = useState({
-    calendars: [],
-    practices: [],
-    pests: []
+    calendars: [] as CropCalendar[],
+    practices: [] as BestPractice[],
+    pests: [] as Pest[]
   })
 
   // Animation variants
@@ -60,7 +100,7 @@ export default function KnowledgePage() {
   }
 
   // Crop calendars data
-  const cropCalendars = [
+  const cropCalendars: CropCalendar[] = [
     {
       crop: t("knowledge.cropCalendars.rice.crop"),
       season: t("knowledge.cropCalendars.rice.season"),
@@ -103,7 +143,7 @@ export default function KnowledgePage() {
   ]
 
   // Best practices data
-  const bestPractices = [
+  const bestPractices: BestPractice[] = [
     {
       title: t("knowledge.bestPractices.organicFarming.title"),
       description: t("knowledge.bestPractices.organicFarming.description"),
@@ -134,7 +174,7 @@ export default function KnowledgePage() {
   ]
 
   // Pest management data
-  const pestManagement = [
+  const pestManagement: Pest[] = [
     {
       pest: t("knowledge.pestManagement.brownPlantHopper.pest"),
       crops: t("knowledge.pestManagement.brownPlantHopper.crops"),
@@ -168,7 +208,7 @@ export default function KnowledgePage() {
   ]
 
   // Weather tips data
-  const weatherTips = [
+  const weatherTips: WeatherTip[] = [
     {
       title: "Rainy Season Tips",
       description: "Manage drainage and prevent waterlogging in fields",
@@ -212,9 +252,9 @@ export default function KnowledgePage() {
       )
     }
     setFilteredData(filtered)
-  }, [searchQuery])
+  }, [searchQuery, cropCalendars, bestPractices, pestManagement])
 
-  const getUrgencyColor = (urgency) => {
+  const getUrgencyColor = (urgency: string) => {
     switch (urgency) {
       case 'immediate': return 'bg-red-100 text-red-700 border-red-200'
       case 'moderate': return 'bg-yellow-100 text-yellow-700 border-yellow-200'
@@ -308,25 +348,28 @@ export default function KnowledgePage() {
               Weather Smart Tips
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {weatherTips.map((tip, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ y: -5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Card className="h-full hover:shadow-lg transition-shadow duration-300 border-2">
-                    <CardContent className="p-5 flex items-center space-x-4">
-                      <div className={`p-3 rounded-xl ${tip.color}`}>
-                        <tip.icon className="h-6 w-6" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold">{tip.title}</h3>
-                        <p className="text-sm text-muted-foreground">{tip.description}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+              {weatherTips.map((tip, index) => {
+                const Icon = tip.icon
+                return (
+                  <motion.div
+                    key={index}
+                    whileHover={{ y: -5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Card className="h-full hover:shadow-lg transition-shadow duration-300 border-2">
+                      <CardContent className="p-5 flex items-center space-x-4">
+                        <div className={`p-3 rounded-xl ${tip.color}`}>
+                          <Icon className="h-6 w-6" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold">{tip.title}</h3>
+                          <p className="text-sm text-muted-foreground">{tip.description}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                )
+              })}
             </div>
           </motion.div>
 
@@ -367,8 +410,9 @@ export default function KnowledgePage() {
                 </TabsTrigger>
               </TabsList>
 
-              {/* Crop Calendars */}
-              {(activeTab === "all" || activeTab === "calendars") && (
+              {/* All Content */}
+              <TabsContent value="all" className="space-y-8">
+                {/* Crop Calendars */}
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -376,7 +420,7 @@ export default function KnowledgePage() {
                 >
                   <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
                     <Calendar className="h-6 w-6 mr-2 text-primary" />
-                    {t("knowledge.sections.calendars")}
+                    Crop Calendars
                   </h2>
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {filteredData.calendars.map((calendar, index) => (
@@ -445,10 +489,8 @@ export default function KnowledgePage() {
                     ))}
                   </div>
                 </motion.div>
-              )}
 
-              {/* Best Practices */}
-              {(activeTab === "all" || activeTab === "practices") && (
+                {/* Best Practices */}
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -456,7 +498,7 @@ export default function KnowledgePage() {
                 >
                   <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
                     <Lightbulb className="h-6 w-6 mr-2 text-primary" />
-                    {t("knowledge.sections.practices")}
+                    Best Practices
                   </h2>
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {filteredData.practices.map((practice, index) => (
@@ -522,10 +564,8 @@ export default function KnowledgePage() {
                     ))}
                   </div>
                 </motion.div>
-              )}
 
-              {/* Pest Management */}
-              {(activeTab === "all" || activeTab === "pests") && (
+                {/* Pest Management */}
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -533,7 +573,7 @@ export default function KnowledgePage() {
                 >
                   <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
                     <Shield className="h-6 w-6 mr-2 text-primary" />
-                    {t("knowledge.sections.pest")}
+                    Pest Control
                   </h2>
                   <div className="space-y-6">
                     {filteredData.pests.map((pest, index) => (
@@ -606,7 +646,57 @@ export default function KnowledgePage() {
                     ))}
                   </div>
                 </motion.div>
-              )}
+              </TabsContent>
+
+              {/* Individual Tab Contents */}
+              <TabsContent value="calendars">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                  {filteredData.calendars.map((calendar, index) => (
+                    <Card key={index} className="h-full">
+                      <CardHeader>
+                        <CardTitle>{calendar.crop}</CardTitle>
+                        <CardDescription>{calendar.season}</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <p>{calendar.description}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
+
+              <TabsContent value="practices">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                  {filteredData.practices.map((practice, index) => (
+                    <Card key={index} className="h-full">
+                      <CardHeader>
+                        <CardTitle>{practice.title}</CardTitle>
+                        <CardDescription>{practice.category}</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <p>{practice.description}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
+
+              <TabsContent value="pests">
+                <div className="space-y-6">
+                  {filteredData.pests.map((pest, index) => (
+                    <Card key={index}>
+                      <CardHeader>
+                        <CardTitle>{pest.pest}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p><strong>Crops:</strong> {pest.crops}</p>
+                        <p><strong>Symptoms:</strong> {pest.symptoms}</p>
+                        <p><strong>Treatment:</strong> {pest.treatment}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
             </Tabs>
           </motion.div>
 
