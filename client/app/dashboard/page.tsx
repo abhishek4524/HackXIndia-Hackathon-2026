@@ -27,6 +27,7 @@ import {
 import MarketPriceWidget from "@/components/ui/MarketPriceWidget"
 import Link from "next/link"
 
+
 // Mock user data - replace with actual database fetch
 const mockUserData = {
   name: "Rajesh Kumar",

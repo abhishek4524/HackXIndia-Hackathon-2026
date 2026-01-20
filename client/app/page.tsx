@@ -27,6 +27,7 @@ import Products from "@/components/ui/products";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
+
 export default function HomePage() {
   const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
