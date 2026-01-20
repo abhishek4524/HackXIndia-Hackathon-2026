@@ -264,7 +264,7 @@ export default function DashboardPage() {
         setLocation(userLocation)
 
         // Fetch weather data using coordinates
-        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${userLocation.latitude}&lon=${userLocation.longitude}&appid=27d631d0f3ab00bad2602091daf5dcd0&units=metric`
+        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${userLocation.latitude}&lon=${userLocation.longitude}&appid=${process.env.NEXT_PUBLIC_OPEN_WEATHER_MAP_API_KEY}`
         
         const weatherResponse = await fetch(weatherUrl)
         if (!weatherResponse.ok) throw new Error(`Weather API error: ${weatherResponse.status}`)
