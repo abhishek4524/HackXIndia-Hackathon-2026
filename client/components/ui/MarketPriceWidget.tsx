@@ -29,10 +29,14 @@ const MarketPriceWidget: React.FC<MarketPriceWidgetProps> = ({ language, transla
       try {
         setLoading(true);
         // API details
-        const API_KEY = process.env.MARKET_PRICE_API_KEY;
-        const RESOURCE_ID = process.env.MARKET_PRICE_RESOURCE_ID;
+        const API_KEY = process.env.NEXT_PUBLIC_MARKET_PRICE_API_KEY;
+        const RESOURCE_ID = process.env.NEXT_PUBLIC_MARKET_PRICE_RESOURCE_ID;
 
         // Build URL
+        if (!API_KEY || !RESOURCE_ID) {
+          throw new Error('Market price API configuration missing (NEXT_PUBLIC_MARKET_PRICE_API_KEY / NEXT_PUBLIC_MARKET_PRICE_RESOURCE_ID)')
+        }
+
         const url = `https://api.data.gov.in/resource/${RESOURCE_ID}?api-key=${API_KEY}&format=json&limit=20&filters[state]=Kerala`;
 
         const response = await fetch(url);
