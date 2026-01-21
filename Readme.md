@@ -1,6 +1,6 @@
 # 🌾 Krishi Sakhi  
 ### AI-Powered Digital Companion for Indian Farmers  
-**HackXIndia 2026 | Solo Project | 24-Hour Hackathon Prototype**
+**HackXIndia 2026 | Team : Silent Hacker AK | 24-Hour Hackathon Prototype**
 
 ---
 
@@ -199,6 +199,6 @@ Full explanation & demo video: https://drive.google.com/file/d/1sfncYRHvCDOzY995
 
 👤 Author
 Abhishek Kumar
-Solo Developer — HackXIndia 2026
+Silent Hacker AK — HackXIndia 2026
 
 Built with a focus on impact, usability, and feasibility, not just features.
