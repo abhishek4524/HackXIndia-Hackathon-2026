@@ -192,14 +192,11 @@ Market Widget → components/ui/MarketPriceWidget.tsx
 
 Language Context → contexts/language-context.tsx
 
----
-
 🔗 Live Demo & Explanation
-Live URL (Vercel): https://krishi-sakhi-xi.vercel.app/
-
----
-
-Full explanation & demo video: https://drive.google.com/file/d/1sfncYRHvCDOzY995cJ-teEy-fPa10EK9/view?usp=sharing
+Live URL (Vercel):
+👉 https://krishi-sakhi-xi.vercel.app/
+Full explanation & demo video:
+👉 https://drive.google.com/file/d/1sfncYRHvCDOzY995cJ-teEy-fPa10EK9/view?usp=sharing
 
 👤 Author
 Abhishek Kumar
